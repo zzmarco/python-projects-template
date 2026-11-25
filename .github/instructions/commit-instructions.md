@@ -17,7 +17,7 @@ When generating commit messages or committing code, strictly follow the Conventi
 - **Subject**:
   - Keep under 50 characters.
   - Use imperative, present tense ("add", not "added" or "adds").
-  - Do not capitalize the first letter.
+  - Always capitalize the first letter.
   - Do not end with a period.
 - **Body**:
   - Separate from the subject with a blank line.
@@ -34,7 +34,7 @@ When generating commit messages or committing code, strictly follow the Conventi
 - **With body & footer**:
 
   ```text
-  feat(billing): add webhook retry logic
+  feat(billing): Add webhook retry logic
 
   Implement exponential backoff for failed Stripe webhook deliveries
   to prevent dropped subscription updates during network blips.
