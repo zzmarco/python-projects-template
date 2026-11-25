@@ -49,18 +49,10 @@ The container installs `pip` and both requirements files during image build.
 Run **Dev Containers: Rebuild Container** after changing dependencies or the
 Python version.
 
-### Local Python environment
-
-For a local setup, create and activate a virtual environment, then install the
-dependency files:
-
-```bash
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-python -m pip install -r requirements-dev.txt
-```
+When you add dependencies to `requirements.txt` or `requirements-dev.txt`,
+run **Dev Containers: Rebuild Container**. The container Dockerfile installs
+both requirements files automatically during the build, so creating a separate
+virtual environment is not recommended for this template.
 
 Both requirements files are currently empty because this template does not
 prescribe a framework or testing package.
