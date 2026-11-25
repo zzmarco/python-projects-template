@@ -1,0 +1,53 @@
+name: Initialize Template Repository
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  setup:
+    # Only run when the repository was generated from a template (not in the template itself)
+    if: github.event.repository.is_template == false
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Update devcontainer name
+        env:
+          REPO_NAME: ${{ github.event.repository.name }}
+        run: |
+          python3 -c '
+          import json, os
+
+          repo_name = os.environ["REPO_NAME"]
+          
+          # 1. Update devcontainer.json
+          path = ".devcontainer/devcontainer.json"
+          with open(path, "r", encoding="utf-8") as f:
+              data = json.load(f)
+
+          py_ver = data.get("build", {}).get("args", {}).get("PYTHON_VERSION", "3.13")
+          data["name"] = f"Python {py_ver} - {repo_name}"
+
+          with open(path, "w", encoding="utf-8") as f:
+              json.dump(data, f, indent=4)
+              f.write("\n")
+
+          # 2. Replace template README.md with a clean project README
+          with open("README.md", "w", encoding="utf-8") as f:
+              f.write(f"# {repo_name}\n\nProject description goes here.\n")
+          '
+
+      - name: Clean up initialization workflow and commit
+        run: |
+          rm -f .github/workflows/init-template.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@://github.com"
+          git add .devcontainer/devcontainer.json .github/workflows/init-template.yml
+          git commit -m "chore: initialize devcontainer for ${{ github.event.repository.name }}"
+          git push
