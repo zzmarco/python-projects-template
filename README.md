@@ -54,7 +54,7 @@ Python version.
 For a local setup, create and activate a virtual environment, then install the
 dependency files:
 
-```powershell
+```bash
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -m pip install --upgrade pip
