@@ -1,6 +1,6 @@
 ---
+name: docstring-writer
 description: Automatically writes and updates Google-style Python docstrings without modifying executable code.
-tools: ['codebase', 'editFiles', 'findFiles', 'problems']
 ---
 # Docstring Writer Agent
 
