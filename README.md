@@ -16,8 +16,8 @@ messages.
   Python Style docstring rules to `**/*.py` files.
 - `.github/instructions/commit-instructions.md` — defines Conventional Commit
   1.0.0 commit message formatting.
-- `.github/prompts/document-code.prompt.md` — provides a reusable prompt for
-  documenting Python code.
+- `.github/skills/document-code/SKILL.md` — provides the reusable
+  `document-code` skill for automatically managing Python docstrings.
 - `.github/workflows/init-template.yml` — initializes repositories created
   from this template and removes itself after one run.
 - `.gitignore` — covers common Python, virtual environment, testing, IDE,
@@ -72,9 +72,9 @@ changing it.
 
 ## Generate docstrings
 
-Open GitHub Copilot Chat and select the **Docstring Writer** agent, or run the
-**Document Code** prompt from the prompt picker. Ask it to document a specific
-file or folder, for example:
+Open GitHub Copilot Chat and select the **Docstring Writer** agent, or use the
+`document-code` skill. Ask it to document a specific file or folder, for
+example:
 
 ```text
 Add missing Google-style docstrings to src/
@@ -95,8 +95,8 @@ defined in `.github/instructions/commit-instructions.md`:
 For example:
 
 ```text
-docs: update Python setup instructions
-fix(api): prevent duplicate request submissions
+docs: Update Python setup instructions
+fix(api): Prevent duplicate request submissions
 ```
 
 ## License
